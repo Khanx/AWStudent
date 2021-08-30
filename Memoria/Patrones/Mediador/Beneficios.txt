@@ -1,0 +1,3 @@
+- Evita que la clase Unidad se comunique con la clase Terreno directamente (abstrae cooperación)
+
+- Permite que los colegas cambien de posición (las unidades cambian su posición según se mueven

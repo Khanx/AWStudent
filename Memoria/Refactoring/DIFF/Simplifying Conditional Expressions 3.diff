@@ -1,0 +1,32 @@
+From daca46945f631f599979fa545c91c70559f2dbc7 Mon Sep 17 00:00:00 2001
+From: Khanx <carcage1@inf.upv.es>
+Date: Fri, 5 Jun 2015 17:34:50 +0200
+Subject: [PATCH] REFACT: Simplifying conditional expressions
+
+---
+ .../Assets/scripts/WorldObject/Unidades/Estados/Movimiento.cs    | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/DDSProject/Assets/scripts/WorldObject/Unidades/Estados/Movimiento.cs b/DDSProject/Assets/scripts/WorldObject/Unidades/Estados/Movimiento.cs
+index da3e5fb..6afa3f8 100644
+--- a/DDSProject/Assets/scripts/WorldObject/Unidades/Estados/Movimiento.cs
++++ b/DDSProject/Assets/scripts/WorldObject/Unidades/Estados/Movimiento.cs
+@@ -45,10 +45,13 @@ public class Movimiento : EstadoUnidad
+ 				if(gob != null && gob != unit.gameObject)
+ 					{
+ 						Unidad temp = gob.GetComponent<Unidad>();
+-						if(temp != null && Vector3.Distance(temp.transform.position, destino)<=unit.GetRangoDeAtaque()
+-						&& temp.GetDuenyo() != Turno.instancia().JugadorActual())
++						
++						bool EnRangoDeAtaque = temp != null && Vector3.Distance(temp.transform.position, destino)<=unit.GetRangoDeAtaque();
++						bool EsEnemiga = temp != null && temp.GetDuenyo() != Turno.instancia().JugadorActual();
++						
++						if(EnRangoDeAtaque && EsEnemiga)
+ 							{
+-								objetivo=temp;
++								objetivo = temp;
+ 								RealizarAccion();
+ 							}
+ 					}
+-- 
+2.1.1

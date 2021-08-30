@@ -1,0 +1,6 @@
+1- Abrir el proyecto con MonoDevelop
+2- Segundo botón sobre References -> Edit References
+3- Añadir nunit.framework
+4- Build -> Build All
+5- View -> Unit Testing
+6- Darle al botón Run Test (arriba derecha, son dos engranajes)

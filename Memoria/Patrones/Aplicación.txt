@@ -1,0 +1,1 @@
+Todos los patrones los hemos aplicado durante el desarrollo cuando hemos visto necesario solucionar un problema y/o por evitar if, switches innecesarios o la excesita conexión de componentes entre sí

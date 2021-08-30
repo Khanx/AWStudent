@@ -1,0 +1,31 @@
+From 12526d16f66d70de43c579de176b7e39bce6ff2d Mon Sep 17 00:00:00 2001
+From: Khanx <carcage1@inf.upv.es>
+Date: Fri, 5 Jun 2015 16:56:30 +0200
+Subject: [PATCH] 2 Refacts: Simplifying Conditional Expressions
+
+---
+ DDSProject/Assets/scripts/Mapa.cs | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
+
+diff --git a/DDSProject/Assets/scripts/Mapa.cs b/DDSProject/Assets/scripts/Mapa.cs
+index 9d723df..56a0f39 100644
+--- a/DDSProject/Assets/scripts/Mapa.cs
++++ b/DDSProject/Assets/scripts/Mapa.cs
+@@ -53,11 +53,14 @@ public class Mapa
+ 		public bool PuedeAndar(Vector3 posicion, PosiblesTerrenos p)
+ 			{
+ 				int x = (int)posicion.x, z = (int)posicion.z;
++
+ 				if ((int)posicion.x >= tamanyox || z >= tamanyoz || x<0 || z<0)
+ 					return false;
+
++				bool PosicionNoOcupada = colegas[x, 1, z] == null && colegas [x, 0, z] != null;
++				bool PuedeAndarPorTerreno = ((Terreno)colegas [x,0, z]).PuedeAndar (p);	
++
++				return  PosicionNoOcupada && PuedeAndarPorTerreno;
+ 			}
+ 
+ 		public void IniciarTurno()
+
+-- 
+2.1.1

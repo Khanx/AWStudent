@@ -1,0 +1,681 @@
+<Project>
+  <Name>DDSProyect</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Global</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Worldobject</Name>
+        <Access>Public</Access>
+        <Location left="3555" top="604" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected Player Duenyo</Member>
+        <Member type="Method">public Player GetDuenyo()</Member>
+        <Member type="Method">public void SetDuenyo(Player Duenyo)</Member>
+        <Member type="Method">public abstract void LeftClick()</Member>
+        <Member type="Method">public abstract void RightClick(GameObject gob)</Member>
+        <Member type="Method">public abstract void Seleccionar()</Member>
+        <Member type="Method">private void Pintar()</Member>
+        <Member type="Method">public void Start()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Unidad</Name>
+        <Access>Public</Access>
+        <Location left="4425" top="1111" />
+        <Size width="322" height="672" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected PosiblesTerrenos AndarPor</Member>
+        <Member type="Field">protected int Armadura</Member>
+        <Member type="Field">private Queue&lt;Vector3&gt; cola</Member>
+        <Member type="Field">protected int Danyo</Member>
+        <Member type="Field">protected int DistanciaDeMovimiento</Member>
+        <Member type="Field">protected EstadoUnidad estado</Member>
+        <Member type="Field">private bool mover</Member>
+        <Member type="Field">private Vector3 objetivoMovimiento</Member>
+        <Member type="Field">private Quaternion objetivoRotacion</Member>
+        <Member type="Field">protected int PenetracionDeArmadura</Member>
+        <Member type="Field">protected int RangoDeAtaque</Member>
+        <Member type="Field">private bool rotar</Member>
+        <Member type="Field">private bool sel</Member>
+        <Member type="Field">protected int Vida</Member>
+        <Member type="Method">public PosiblesTerrenos GetAndaPor()</Member>
+        <Member type="Method">public int GetArmadura()</Member>
+        <Member type="Method">public int GetDanyo()</Member>
+        <Member type="Method">public int GetDistanciaDeMovimiento()</Member>
+        <Member type="Method">public int GetPenetracionDeArmadura()</Member>
+        <Member type="Method">public int GetVida()</Member>
+        <Member type="Method">public void IniciarTurno()</Member>
+        <Member type="Method">public override void LeftClick()</Member>
+        <Member type="Method">private void MoverA()</Member>
+        <Member type="Method">public void MoverA(Queue&lt;Vector3&gt; cola)</Member>
+        <Member type="Method">public void QuitarVida(int PenetracionDeArmadura, int Danyo)</Member>
+        <Member type="Method">public override void RightClick(GameObject gob)</Member>
+        <Member type="Method">private void RotarA()</Member>
+        <Member type="Method">public override void Seleccionar()</Member>
+        <Member type="Method">public void SetEstado(EstadoUnidad estado)</Member>
+        <Member type="Method">public void Start()</Member>
+        <Member type="Method">void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Terrestre</Name>
+        <Access>Public</Access>
+        <Location left="3431" top="2351" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Aereo</Name>
+        <Access>Public</Access>
+        <Location left="4506" top="2410" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Naval</Name>
+        <Access>Public</Access>
+        <Location left="5413" top="2354" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Infanteria</Name>
+        <Access>Public</Access>
+        <Location left="3091" top="2681" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Vehiculo</Name>
+        <Access>Public</Access>
+        <Location left="3730" top="2681" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Infanteria_Ligera</Name>
+        <Access>Public</Access>
+        <Location left="2895" top="3027" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Infanteria_Pesada</Name>
+        <Access>Public</Access>
+        <Location left="3246" top="3027" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Tanque</Name>
+        <Access>Public</Access>
+        <Location left="3627" top="3027" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ArtilleriaT</Name>
+        <Access>Public</Access>
+        <Location left="3857" top="3027" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Caza</Name>
+        <Access>Public</Access>
+        <Location left="4349" top="2748" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Bombardero</Name>
+        <Access>Public</Access>
+        <Location left="4678" top="2748" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Destructor</Name>
+        <Access>Public</Access>
+        <Location left="5273" top="2717" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ArtilleriaA</Name>
+        <Access>Public</Access>
+        <Location left="5564" top="2717" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>EstadoUnidad</Name>
+        <Access>Public</Access>
+        <Location left="5220" top="1188" />
+        <Size width="162" height="281" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected Unidad unit</Member>
+        <Member type="Field">protected Acciones Action</Member>
+        <Member type="Field">protected PosiblesTerrenos AndaPor</Member>
+        <Member type="Constructor">public EstadoUnidad(Unidad unit)</Member>
+        <Member type="Method">public abstract void Start()</Member>
+        <Member type="Method">public abstract void LeftClick(GameObject gob)</Member>
+        <Member type="Method">public abstract void RightClick()</Member>
+        <Member type="Method">public abstract void RealizarAccion()</Member>
+        <Member type="Method">protected void Pintar(Color color)</Member>
+        <Member type="Method">protected Camino CalcularCosteCamino(Vector3 origen, Vector3 destino)</Member>
+        <Member type="Method">public void SetAction(Acciones Action)</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Inicio</Name>
+        <Access>Public</Access>
+        <Location left="4933" top="1650" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void Start()</Member>
+        <Member type="Method">public override void LeftClick(GameObject gob)</Member>
+        <Member type="Method">public override void RightClick()</Member>
+        <Member type="Method">public override void RealizarAccion()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Movimiento</Name>
+        <Access>Public</Access>
+        <Location left="5220" top="1650" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Movimiento(Unidad unit, Queue&lt;Vector3&gt; camino)</Member>
+        <Member type="Method">public override void Start()</Member>
+        <Member type="Method">public override void LeftClick(GameObject gob)</Member>
+        <Member type="Method">public override void RightClick()</Member>
+        <Member type="Method">public override void RealizarAccion()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Fin</Name>
+        <Access>Public</Access>
+        <Location left="5508" top="1650" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void Start()</Member>
+        <Member type="Method">public override void LeftClick(GameObject gob)</Member>
+        <Member type="Method">public override void RightClick()</Member>
+        <Member type="Method">public override void RealizarAccion()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Mapa</Name>
+        <Access>Public</Access>
+        <Location left="285" top="250" />
+        <Size width="322" height="315" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public static int tamanyox</Member>
+        <Member type="Field">public static int tamanyoz</Member>
+        <Member type="Field">public static readonly Mapa ins</Member>
+        <Member type="Field">private IColega[,,] colegas</Member>
+        <Member type="Constructor">private Mapa()</Member>
+        <Member type="Method">public static Mapa instancia()</Member>
+        <Member type="Method">public void AddTerreno(Terreno terrain)</Member>
+        <Member type="Method">public void PintarTerreno(Vector3 posicion, Color color)</Member>
+        <Member type="Method">public void AddUnidad(Unidad unit)</Member>
+        <Member type="Method">public void SetUnidad(Vector3 origen, Vector3 destino)</Member>
+        <Member type="Method">public void DelUnidad(Vector3 posicion)</Member>
+        <Member type="Method">public bool PuedeAndar(Vector3 posicion, PosiblesTerrenos p)</Member>
+        <Member type="Method">public void IniciarTurno()</Member>
+        <Member type="Method">public bool UnidadesEnemigasEnRango(Vector3 posicion, int distancia)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Terreno</Name>
+        <Access>Public</Access>
+        <Location left="1810" top="618" />
+        <Size width="226" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Material original</Member>
+        <Member type="Method">void Start()</Member>
+        <Member type="Method">public abstract bool PuedeAndar(PosiblesTerrenos p)</Member>
+        <Member type="Method">public void Pintar(Color color)</Member>
+        <Member type="Method">public void DesPintar()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Tierra</Name>
+        <Access>Public</Access>
+        <Location left="1612" top="939" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override bool puedeAndar(PosiblesTerrenos p)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Agua</Name>
+        <Access>Public</Access>
+        <Location left="2063" top="939" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override bool puedeAndar(PosiblesTerrenos p)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>PosiblesTerrenos</Name>
+        <Access>Public</Access>
+        <Location left="2271" top="585" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>Tierra</Value>
+        <Value>Agua</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>Fabrica</Name>
+        <Access>Public</Access>
+        <Location left="1769" top="1648" />
+        <Size width="162" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public abstract GameObject CrearUnidad(F_Unidades i)</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FabricaTerrestre</Name>
+        <Access>Public</Access>
+        <Location left="1408" top="2091" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override GameObject CrearUnidad(int i)</Member>
+        <Member type="Method">void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FabricaAerea</Name>
+        <Access>Public</Access>
+        <Location left="1769" top="2091" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override GameObject CrearUnidad(int i)</Member>
+        <Member type="Method">void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FabricaNaval</Name>
+        <Access>Public</Access>
+        <Location left="2160" top="2091" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override GameObject CrearUnidad(int i)</Member>
+        <Member type="Method">void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>UserInput</Name>
+        <Access>Public</Access>
+        <Location left="373" top="1198" />
+        <Size width="200" height="264" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public WorldObject selectObject</Member>
+        <Member type="Field">public static UserInput instance</Member>
+        <Member type="Method">public static GameObject findHitMouse()</Member>
+        <Member type="Method">void Awake()</Member>
+        <Member type="Method">void Start()</Member>
+        <Member type="Method">void Update()</Member>
+        <Member type="Method">private void LeftClick()</Member>
+        <Member type="Method">private void MoveCameraWithButtons()</Member>
+        <Member type="Method">private void MoveCameraWithMouse()</Member>
+        <Member type="Method">private void RightClick()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IColega</Name>
+        <Access>Public</Access>
+        <Location left="1830" top="259" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+      </Entity>
+      <Entity type="Enum">
+        <Name>F_Unidades</Name>
+        <Access>Public</Access>
+        <Location left="1498" top="1648" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>INFANTERIA_LIGERA</Value>
+        <Value>INFANTERIA_PESADA</Value>
+        <Value>TANQUE</Value>
+        <Value>ARTILLERIAT</Value>
+        <Value>CAZA</Value>
+        <Value>BOMBARDERO</Value>
+        <Value>DESTRUCTOR</Value>
+        <Value>ARTILLERIAA</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>Edificio</Name>
+        <Access>Public</Access>
+        <Location left="2960" top="1109" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private bool puedeCrear</Member>
+        <Member type="Method">public override void RightClick(GameObject gob)</Member>
+        <Member type="Method">public override void Seleccionar()</Member>
+        <Member type="Method">public bool GetPuedeCrear()</Member>
+        <Member type="Method">public void SetPuedeCrear(bool cond)</Member>
+        <Member type="Method">public void IniciarTurno()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>Acciones</Name>
+        <Access>Public</Access>
+        <Location left="5508" top="1188" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>INDEFINIDO</Value>
+        <Value>ESPERAR</Value>
+        <Value>ATACAR</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>Camino</Name>
+        <Access>Public</Access>
+        <Location left="5936" top="1231" />
+        <Size width="162" height="264" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Queue&lt;Vector3&gt; cola</Member>
+        <Member type="Field">private int coste</Member>
+        <Member type="Field">private PosiblesTerrenos AndaPor</Member>
+        <Member type="Field">private Vector3 origen</Member>
+        <Member type="Field">private Vector3 destino</Member>
+        <Member type="Constructor">public Camino(Vector3 origen, Vector3 destino, PosiblesTerrenos AndaPor)</Member>
+        <Member type="Constructor">public Camino(int coste, Queue&lt;Vector3&gt; lista)</Member>
+        <Member type="Method">public Queue&lt;Vector3&gt; GetCamino()</Member>
+        <Member type="Method">public int getCoste()</Member>
+        <Member type="Method">public Camino CalcularCosteCamino()</Member>
+        <Member type="Method">private Camino CalcularCosteCamino(Vector3 origen, Vector3 destino)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Player</Name>
+        <Access>Public</Access>
+        <Location left="984" top="2691" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private int dinero = 1000</Member>
+        <Member type="Method">void Start()</Member>
+        <Member type="Method">public void Aumentar(int pago)</Member>
+        <Member type="Method">public bool Pagar(int pagar)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Turno</Name>
+        <Access>Public</Access>
+        <Location left="647" top="2691" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private static Turno ins</Member>
+        <Member type="Field">private ArrayList jugadores</Member>
+        <Member type="Field">private int turnoAcual</Member>
+        <Member type="Constructor">private Turno()</Member>
+        <Member type="Method">public int GetTurno()</Member>
+        <Member type="Method">public void AddPlayer(Player jugador)</Member>
+        <Member type="Method">public void SiguienteTurno()</Member>
+        <Member type="Method">public Player JugadorActual()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ENaval</Name>
+        <Access>Public</Access>
+        <Location left="2960" top="1461" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private FabricaNaval FabricaNaval</Member>
+        <Member type="Method">public void Start()</Member>
+        <Member type="Method">public override void LeftClick(GameObject gob)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>EAerea</Name>
+        <Access>Public</Access>
+        <Location left="3216" top="1458" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private FabricaAerea FabricaAerea</Member>
+        <Member type="Method">public void Start()</Member>
+        <Member type="Method">public override void LeftClick(GameObject gob)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ETerrestre</Name>
+        <Access>Public</Access>
+        <Location left="2713" top="1458" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private FabricaTerrestre FabricaTerrestre</Member>
+        <Member type="Method">public void Start()</Member>
+        <Member type="Method">public override void LeftClick(GameObject gob)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ControlInterfaz</Name>
+        <Access>Public</Access>
+        <Location left="5188" top="191" />
+        <Size width="162" height="519" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Unidad unidadSeleccionada</Member>
+        <Member type="Field">private static bool esPausa</Member>
+        <Member type="Field">private static bool puedeMostrarMenuUnidad</Member>
+        <Member type="Field">private static bool puedeMostrarMenuFabrica</Member>
+        <Member type="Field">private static bool objetoMoviendose</Member>
+        <Member type="Field">public static float w</Member>
+        <Member type="Field">public static float h</Member>
+        <Member type="Field">public static float t</Member>
+        <Member type="Field">public static float l</Member>
+        <Member type="Field">public GUIStyle estiloTexto</Member>
+        <Member type="Method">void Start()</Member>
+        <Member type="Method">void Update()</Member>
+        <Member type="Method">void OnGUI()</Member>
+        <Member type="Method">public static void MenuUnidadOn()</Member>
+        <Member type="Method">public static void MenuUnidadOff()</Member>
+        <Member type="Method">public static void MenuFabricaON()</Member>
+        <Member type="Method">public static void MenuFabricOff()</Member>
+        <Member type="Method">WorldObject GetWorldObject()</Member>
+        <Member type="Method">Unidad GetUnidad()</Member>
+        <Member type="Method">public void MenuSiguienteTurno()</Member>
+        <Member type="Method">public void MenuUnidad()</Member>
+        <Member type="Method">public void MenuFabrica()</Member>
+        <Member type="Method">public void MostrarDatosUnidad()</Member>
+        <Member type="Method">public void ModificaEstilo()</Member>
+        <Member type="Method">public string DatosUnidad()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Generalization" first="1" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="3" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>4587</X>
+          <Y>1821</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="4" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="2" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="8" second="5">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="7" second="5">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="5" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="6" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="9" second="6">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="10" second="6">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="12" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="11" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="13" second="4">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="14" second="4">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="18" second="15">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="17" second="15">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="16" second="15">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="1" second="15">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Generalization" first="22" second="20">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="21" second="20">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="27" second="24">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="26" second="24">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="25" second="24">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="0" second="29">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1922</X>
+          <Y>506</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="29" second="19">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1784</X>
+          <Y>375</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>632</X>
+          <Y>375</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Realization" first="20" second="29">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1920</X>
+          <Y>593</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="31" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="31" second="24">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2935</X>
+          <Y>1213</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="34" second="35">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Generalization" first="36" second="31">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="38" second="31">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="37" second="31">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>

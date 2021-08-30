@@ -1,0 +1,3 @@
+- Ha sido mucho más sencillo de modificar la conducta para cada estado distinto
+
+- Nos ha ahorrado muchos ifs y switch

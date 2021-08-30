@@ -1,0 +1,27 @@
+From 5c0784d10c508212fd5078212f1ace5e8c37f980 Mon Sep 17 00:00:00 2001
+From: Khanx <carcage1@inf.upv.es>
+Date: Fri, 5 Jun 2015 17:00:20 +0200
+Subject: [PATCH] REFACT: Consolidate Conditional Expression
+
+---
+ DDSProject/Assets/scripts/WorldObject/Edificio.cs | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
+
+diff --git a/DDSProject/Assets/scripts/WorldObject/Edificio.cs b/DDSProject/Assets/scripts/WorldObject/Edificio.cs
+index b44fd12..b636c63 100644
+--- a/DDSProject/Assets/scripts/WorldObject/Edificio.cs
++++ b/DDSProject/Assets/scripts/WorldObject/Edificio.cs
+@@ -13,12 +13,7 @@ public class Edificio : WorldObject
+ 
+ 		override public void LeftClick(GameObject gob)
+ 			{
+-				if (!gob)
+-					return;
+-				
+-				if(Turno.instancia().JugadorActual() != Duenyo)
++				if (!gob || Turno.instancia().JugadorActual() != Duenyo)
+ 					return;
+ 				
+ 				Vector3 nuevaPosicion = gob.transform.position;
+-- 
+2.1.1

@@ -1,0 +1,41 @@
+﻿
+public enum PosiblesTerrenos
+	{
+		Tierra = 0x01,
+		Agua = 0x02
+		
+		//FUTURA IMPLEMENTACION
+		//Bosque = 0x04,
+		//Montanya = 0x08,
+	}
+
+public enum F_Unidades
+	{
+		INFANTERIA_LIGERA,
+		INFANTERIA_PESADA,
+		TANQUE,
+		ARTILLERIAT,
+		CAZA,
+		BOMBARDERO,
+		DESTRUCTOR,
+		ARTILLERIAA
+	}
+
+public enum Acciones
+	{
+		INDEFINIDO,
+		ESPERAR,
+		ATACAR
+	}
+
+public enum costes
+{
+	COSTE_INFANTERIA_LIGERA = 500,
+	COSTE_INFANTERIA_PESADA = 700,
+	COSTE_TANQUE = 1000,
+	COSTE_ARTILLERIAT = 1000,
+	COSTE_CAZA = 2000,
+	COSTE_BOMBARDERO = 2500,
+	COSTE_DESTRUCTOR = 2000,
+	COSTE_ARTILLERIAA = 2500
+}

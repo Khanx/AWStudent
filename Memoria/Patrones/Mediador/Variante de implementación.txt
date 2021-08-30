@@ -1,0 +1,1 @@
+- En la implementación hemos tenido que poner que la clase Mediador sea Singleton por culpa de la tecnologia

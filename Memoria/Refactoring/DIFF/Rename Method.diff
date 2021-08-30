@@ -1,0 +1,37 @@
+From aea7f29a431f3fde2d6643cbd3f08fc7b1e947d1 Mon Sep 17 00:00:00 2001
+From: Khanx <carcage1@inf.upv.es>
+Date: Fri, 5 Jun 2015 16:48:02 +0200
+Subject: [PATCH] REFACT: Rename Method
+
+---
+ DDSProject/Assets/scripts/ControlInterfaz.cs | 2 +-
+ DDSProject/Assets/scripts/Mapa.cs            | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/DDSProject/Assets/scripts/ControlInterfaz.cs b/DDSProject/Assets/scripts/ControlInterfaz.cs
+index 517e391..e00c311 100644
+--- a/DDSProject/Assets/scripts/ControlInterfaz.cs
++++ b/DDSProject/Assets/scripts/ControlInterfaz.cs
+@@ -69,7 +69,7 @@ public class ControlInterfaz : MonoBehaviour {
+ 			unidadSeleccionada.GetEstado().SetAction(Acciones.ESPERAR);
+ 			MenuUnidadOff();
+ 		}
+-		if(Mapa.Instancia().UnidadesEnRango(unidadSeleccionada.transform.position, unidadSeleccionada.GetRangoDeAtaque()) && GUI.Button(new Rect(20,70,80,20), "Atacar")) {
++		if(Mapa.Instancia().UnidadesEnemigasEnRango(unidadSeleccionada.transform.position, unidadSeleccionada.GetRangoDeAtaque()) && GUI.Button(new Rect(20,70,80,20), "Atacar")) {
+ 			unidadSeleccionada.GetEstado().SetAction(Acciones.ATACAR);
+ 			MenuUnidadOff();
+ 		}
+diff --git a/DDSProject/Assets/scripts/Mapa.cs b/DDSProject/Assets/scripts/Mapa.cs
+index c68ab53..9d723df 100644
+--- a/DDSProject/Assets/scripts/Mapa.cs
++++ b/DDSProject/Assets/scripts/Mapa.cs
+@@ -69,7 +69,7 @@ public class Mapa
+ 			}
+ 
+-		public bool UnidadesEnRango(Vector3 posicion, int distancia)
++		public bool UnidadesEnemigasEnRango(Vector3 posicion, int distancia)
+ 			{
+ 				int x = (int)posicion.x, z=(int)posicion.z;
+ 
+-- 
+2.1.1

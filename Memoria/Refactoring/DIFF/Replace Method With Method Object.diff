@@ -1,0 +1,226 @@
+From 2c0910c76eecc058c7bf16676ed0fa3058c85fa9 Mon Sep 17 00:00:00 2001
+From: Khanx <carcage1@inf.upv.es>
+Date: Fri, 5 Jun 2015 17:25:50 +0200
+Subject: [PATCH] REFACT: Replace Method With Method Object && SOLUCIONADO BUG
+ de REFACT simplifying
+
+---
+ DDSProject/Assets/scripts/Camino.cs                | 69 +++++++++++++++++++---
+ DDSProject/Assets/scripts/Mapa.cs                  |  4 +-
+ .../scripts/WorldObject/Unidades/EstadoUnidad.cs   | 46 +--------------
+ .../scripts/WorldObject/Unidades/Estados/Inicio.cs |  4 +-
+ .../WorldObject/Unidades/Estados/Movimiento.cs     |  4 +-
+ 5 files changed, 71 insertions(+), 56 deletions(-)
+
+diff --git a/DDSProject/Assets/scripts/Camino.cs b/DDSProject/Assets/scripts/Camino.cs
+index b47bcdc..04ac9d5 100644
+--- a/DDSProject/Assets/scripts/Camino.cs
++++ b/DDSProject/Assets/scripts/Camino.cs
+@@ -3,19 +3,74 @@ using System.Collections.Generic;
+ 
+ public class Camino
+ 	{
+-		private Queue<Vector3> lista;
++		private Queue<Vector3> cola;
+ 		private int coste;
++		private PosiblesTerrenos AndaPor;
++		private Vector3 origen, destino;
+ 
+-		public Camino(int coste, Queue<Vector3> lista)
++		public Camino(Vector3 origen, Vector3 destino, PosiblesTerrenos AndaPor)
++			{
++				cola = new Queue<Vector3>();
++				this.AndaPor = AndaPor;
++				this.origen = origen;
++				this.destino = destino;
++			}
++
++		public Camino(int coste, Queue<Vector3> cola)
+ 			{
+ 				this.coste = coste;
+-				this.lista = lista;
++				this.cola = cola;
+ 			}
+ 
+-		public Queue<Vector3> GetLista()	{return lista;}
++		public Queue<Vector3> GetCamino()	{return cola;}
+ 		public int GetCoste()	{return coste;}
+ 
+-		//No se han creado los metodos setLista y setCoste porque no se desea que pueda modificarse la informacion
+-		//en el caso de que en un futuro se necesite se añadiran.
+-		// Att: K
++		public Camino CalcularCosteCamino()
++			{
++				return CalcularCosteCamino(origen, destino);
++			}
++
++		private Camino CalcularCosteCamino(Vector3 origen, Vector3 destino)
++			{
++				cola.Enqueue (origen);
++				
++				//Usamos 0.5 porque hay una cota de error
++				if (Vector3.Distance(origen,destino) <= 0.5)
++					return new Camino (coste, cola);
++				
++				//Si no es posible ir al destino no calculamos
++				if (!Mapa.Instancia().PuedeAndar (destino, AndaPor))
++					return new Camino(int.MaxValue, cola);
++				
++				float[,] mod = new float[4,2]{{1,0},{-1,0},{0,1},{0,-1}};	//MOVIMIENTO NO DIAGONAL
++				Vector3 BNext = origen;
++				float Bcost = float.MaxValue;
++				
++				for (int i=0; i<4; i++)
++					{
++						Vector3 ndexdest = origen;
++						ndexdest.x += mod[i,0];
++						ndexdest.z += mod[i,1];
++						
++						if(cola.Contains(ndexdest))	//No pasar por un sitio por donde ya has pasado
++							continue;
++						
++						if(!Mapa.Instancia().PuedeAndar(ndexdest, AndaPor))
++							continue;
++						
++						float hcost = ((Vector3)(destino - ndexdest)).magnitude+coste;
++						
++						if(hcost<Bcost)
++						{
++							BNext=ndexdest;
++							Bcost=hcost;
++						}
++					}
++				
++				if (Bcost == float.MaxValue)	//Camino imposible
++				return new Camino(int.MaxValue, cola);
++			
++			coste++;	//Aumentamos el coste del camino
++			return CalcularCosteCamino(BNext, destino);
++		}
+ 	}
+\ No newline at end of file
+diff --git a/DDSProject/Assets/scripts/Mapa.cs b/DDSProject/Assets/scripts/Mapa.cs
+index 56a0f39..8982afb 100644
+--- a/DDSProject/Assets/scripts/Mapa.cs
++++ b/DDSProject/Assets/scripts/Mapa.cs
+@@ -57,8 +57,8 @@ public class Mapa
+ 				if ((int)posicion.x >= tamanyox || z >= tamanyoz || x<0 || z<0)
+ 					return false;
+ 
+-				bool PosicionNoOcupada = colegas[x, 1, z] == null && colegas [x, 0, z] != null;
+-				bool PuedeAndarPorTerreno = ((Terreno)colegas [x,0, z]).PuedeAndar (p);	
++				bool PosicionNoOcupada = colegas[x, 1, z] == null;
++				bool PuedeAndarPorTerreno = colegas [x, 0, z] != null && ((Terreno)colegas [x,0, z]).PuedeAndar (p);	
+ 
+ 				return  PosicionNoOcupada && PuedeAndarPorTerreno;
+ 			}
+diff --git a/DDSProject/Assets/scripts/WorldObject/Unidades/EstadoUnidad.cs b/DDSProject/Assets/scripts/WorldObject/Unidades/EstadoUnidad.cs
+index c220ceb..4a311b8 100644
+--- a/DDSProject/Assets/scripts/WorldObject/Unidades/EstadoUnidad.cs
++++ b/DDSProject/Assets/scripts/WorldObject/Unidades/EstadoUnidad.cs
+@@ -6,12 +6,10 @@ public abstract class EstadoUnidad
+ 
+ 		protected Unidad unit;
+ 		protected Acciones Action = Acciones.INDEFINIDO;
+-		protected PosiblesTerrenos AndaPor;
+ 
+ 		public EstadoUnidad(Unidad unit)
+ 			{
+ 				this.unit = unit;
+-				AndaPor = unit.GetAndaPor();
+ 			}
+ 
+ 		//1- Esperar
+@@ -41,7 +39,7 @@ public abstract class EstadoUnidad
+ 					for (int j=z-DistanciaDeMovimiento; j<=z+DistanciaDeMovimiento; j++)
+ 						{
+ 							Vector3 pos = new Vector3(i,y, j);
+-							Camino c = CalcularCosteCamino(origen, pos, new Queue<Vector3>());
++							Camino c = CalcularCosteCamino(origen, pos);
+ 
+ 							if(c.GetCoste()<=DistanciaDeMovimiento)
+ 							Mapa.Instancia().PintarTerreno(pos, color);
+@@ -49,47 +47,9 @@ public abstract class EstadoUnidad
+ 			}
+ 
+-		protected Camino CalcularCosteCamino(Vector3 origen, Vector3 destino, Queue<Vector3> cola, int cost = 0)
++		protected Camino CalcularCosteCamino(Vector3 origen, Vector3 destino)
+ 			{
+-				cola.Enqueue (origen);
+-
+-				//Usamos 0.5 porque hay una cota de error
+-				if (Vector3.Distance(origen,destino) <= 0.5)
+-				return new Camino (cost, cola);
+-
+-				//Si no es posible ir al destino no calculamos
+-				if (!Mapa.Instancia().PuedeAndar (destino, AndaPor))
+-				return new Camino(int.MaxValue, cola);
+-
+-				float[,] mod = new float[4,2]{{1,0},{-1,0},{0,1},{0,-1}};	//MOVIMIENTO NO DIAGONAL
+-				Vector3 BNext = origen;
+-				float Bcost = float.MaxValue;
+-
+-				for (int i=0; i<4; i++)
+-					{
+-						Vector3 ndexdest = origen;
+-						ndexdest.x += mod[i,0];
+-						ndexdest.z += mod[i,1];
+-
+-					if(cola.Contains(ndexdest))	//No pasar por un sitio por donde ya has pasado
+-							continue;
+-
+-						if(!Mapa.Instancia().PuedeAndar(ndexdest, AndaPor))
+-							continue;
+-
+-						float hcost = ((Vector3)(destino - ndexdest)).magnitude+cost;
+-
+-						if(hcost<Bcost)
+-							{
+-								BNext=ndexdest;
+-								Bcost=hcost;
+-							}
+-					}
+-
+-				if (Bcost == float.MaxValue)	//Camino imposible
+-					return new Camino(int.MaxValue, cola);
+-
+-				return CalcularCosteCamino(BNext, destino, cola, cost+1);
++				return new Camino(origen, destino, unit.GetAndaPor()).CalcularCosteCamino();
+ 			}
+ 
+ 	}
+diff --git a/DDSProject/Assets/scripts/WorldObject/Unidades/Estados/Inicio.cs b/DDSProject/Assets/scripts/WorldObject/Unidades/Estados/Inicio.cs
+index 8ac7a5f..c43030c 100644
+--- a/DDSProject/Assets/scripts/WorldObject/Unidades/Estados/Inicio.cs
++++ b/DDSProject/Assets/scripts/WorldObject/Unidades/Estados/Inicio.cs
+@@ -22,10 +22,10 @@ public class Inicio : EstadoUnidad
+ 				Vector3 destino = gob.transform.position;
+ 					destino.y = origen.y;
+ 
+-				Camino c = CalcularCosteCamino(origen, destino, new Queue<Vector3>());
++				Camino c = CalcularCosteCamino(origen, destino);
+ 
+ 				if(c.GetCoste()<=unit.GetDistanciaDeMovimiento())
+-					unit.SetEstado (new Movimiento(unit, c.GetLista()));
++					unit.SetEstado (new Movimiento(unit, c.GetCamino()));
+ 			}
+ 
+ 		public override void RightClick()
+diff --git a/DDSProject/Assets/scripts/WorldObject/Unidades/Estados/Movimiento.cs b/DDSProject/Assets/scripts/WorldObject/Unidades/Estados/Movimiento.cs
+index 6bb96d4..da3e5fb 100644
+--- a/DDSProject/Assets/scripts/WorldObject/Unidades/Estados/Movimiento.cs
++++ b/DDSProject/Assets/scripts/WorldObject/Unidades/Estados/Movimiento.cs
+@@ -58,9 +58,9 @@ public class Movimiento : EstadoUnidad
+ 			{
+ 				if(Action == Acciones.INDEFINIDO)
+ 					{
+-						Camino c = CalcularCosteCamino(destino, origen, new Queue<Vector3>());
++						Camino c = CalcularCosteCamino(destino, origen);
+ 
+-						unit.MoverA(c.GetLista());
++						unit.MoverA(c.GetCamino());
+ 						unit.SetEstado (new Inicio(unit));
+ 
+ 						Mapa.Instancia().SetUnidad (destino, origen);
+-- 
+2.1.1

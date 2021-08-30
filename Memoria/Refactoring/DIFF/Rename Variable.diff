@@ -1,0 +1,35 @@
+From 4d495a8824e2739838e352091ace33e69802ee32 Mon Sep 17 00:00:00 2001
+From: Khanx <carcage1@inf.upv.es>
+Date: Fri, 5 Jun 2015 17:03:23 +0200
+Subject: [PATCH] REFACT: Rename variable
+
+---
+ DDSProject/Assets/scripts/WorldObject/Unidades/EstadoUnidad.cs | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/DDSProject/Assets/scripts/WorldObject/Unidades/EstadoUnidad.cs b/DDSProject/Assets/scripts/WorldObject/Unidades/EstadoUnidad.cs
+index bdb04e5..c220ceb 100644
+--- a/DDSProject/Assets/scripts/WorldObject/Unidades/EstadoUnidad.cs
++++ b/DDSProject/Assets/scripts/WorldObject/Unidades/EstadoUnidad.cs
+@@ -35,15 +35,15 @@ public abstract class EstadoUnidad
+ 				Vector3 origen = unit.transform.position;
+ 				int x = (int)origen.x, y = 1, z = (int)origen.z;	//NOTESE EL 1 en la Y
+ 
+-				int mov = unit.GetDistanciaDeMovimiento ();
++				int DistanciaDeMovimiento = unit.GetDistanciaDeMovimiento ();
+ 
+-				for (int i=x-mov; i<=x+mov; i++)
+-					for (int j=z-mov; j<=z+mov; j++)
++				for (int i=x-DistanciaDeMovimiento; i<=x+DistanciaDeMovimiento; i++)
++					for (int j=z-DistanciaDeMovimiento; j<=z+DistanciaDeMovimiento; j++)
+ 						{
+ 							Vector3 pos = new Vector3(i,y, j);
+ 							Camino c = CalcularCosteCamino(origen, pos, new Queue<Vector3>());
+ 
+-							if(c.GetCoste()<=mov)
++							if(c.GetCoste()<=DistanciaDeMovimiento)
+ 							Mapa.Instancia().PintarTerreno(pos, color);
+ 						}
+ 			}
+-- 
+2.1.1

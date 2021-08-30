@@ -1,0 +1,35 @@
+From 12526d16f66d70de43c579de176b7e39bce6ff2d Mon Sep 17 00:00:00 2001
+From: Khanx <carcage1@inf.upv.es>
+Date: Fri, 5 Jun 2015 16:56:30 +0200
+Subject: [PATCH] 2 Refacts: Simplifying Conditional Expressions
+
+---
+ DDSProject/Assets/scripts/Mapa.cs | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
+
+diff --git a/DDSProject/Assets/scripts/Mapa.cs b/DDSProject/Assets/scripts/Mapa.cs
+index 9d723df..56a0f39 100644
+--- a/DDSProject/Assets/scripts/Mapa.cs
++++ b/DDSProject/Assets/scripts/Mapa.cs
+@@ -76,11 +78,15 @@ public class Mapa
+ 				for(int i=x-distancia;i <= x+distancia;i++)
+ 					for(int j=z-distancia;j <= z+distancia;j++)
+ 						{
+-							if (i > tamanyox || j > tamanyoz || i < 0 || j < 0 || (i==x && j==z))
++							bool PosicionFueraDelMapa = (i > tamanyox || j > tamanyoz || i < 0 || j < 0 || (i==x && j==z));
++
++							if (PosicionFueraDelMapa)
+ 								continue;
+-							if(colegas[i,1,j] != null && ((Unidad)colegas[i,1,j]).GetDuenyo() != Turno.instancia().JugadorActual())
+-								if(Vector3.Distance(posicion, new Vector3(i,1,j))<=distancia)
+-									return true;
++							
++								bool DetectaUnidadEnemiga = (colegas[i,1,j] != null && ((Unidad)colegas[i,1,j]).GetDuenyo() != Turno.instancia().JugadorActual());
++								if(DetectaUnidadEnemiga)
++									if(Vector3.Distance(posicion, new Vector3(i,1,j))<=distancia)
++										return true;
+ 						}
+ 
+ 				return false;
+-- 
+2.1.1
